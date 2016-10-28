@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+   
+    <ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="#myProject">My Project</a></li>
+        <li><a data-toggle="tab" href="#newProject">New Project</a></li>     
+    </ul>
+
+    <div class="tab-content">
+        <div id="myProject" class="tab-pane fade in active">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th>Fund Target</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for data, endDate in project %}
+                        <tr>
+                            <th scope="row">{{data[1]}}</th>
+                            <td>{{data[3]}}</td>
+                            <td>{{endDate}}</td>
+                            <td align="center">{{data[5]}}</td>
+                            <td><a href="/edit?project={{data[0]}}">Edit</a></td>
+                            <td><a href="/delete?project={{data[0]}}" onclick="return confirm('Delete Project?')">Delete</a></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            
+        </div>
+
+        <!--New Project -->
+         <div id="newProject" class="tab-pane fade">
+            <br/>
+
+            <form action="/createProject" method="post">
+                <div class="form-group">
+                    <label for="title">Title</label>
+                    <input class="form-control" type="text" placeholder="Title" id="title" name="title" required>
+                    
+                </div>
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <textarea class="form-control" id="description" name="description" rows="3" placeholder="Description" required></textarea>       
+                </div>
+                <div class="form-group">
+                    <label for="title">Start Date</label>
+                    <input class="form-control" type="date" placeholder="2016/07/04" value={{currDate}} min={{currDate}} id="startDate" name="startDate" required>   
+                </div>
+                <div class="form-group">
+                    <label for="description">Duration</label>
+                    <div class="input-group">
+                        <input class="form-control" type="number" min="0" placeholder="10" id="duration" name="duration" required>
+                        <div class="input-group-addon">day(s)</div>  
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="title">Target Fund</label>
+                    <div class="input-group">
+                        <div class="input-group-addon">$</div>
+                        <input class="form-control" type="number" min="0" class="form-control" id="amount" name="amount" placeholder="100" required>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="offset-sm-2 col-sm-10">
+                        <button type="submit" class="btn btn-primary">Create Project</button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+                   
+                
+    
+
+        
+ 
+{% endblock %}
+        
+   
+ 
+   

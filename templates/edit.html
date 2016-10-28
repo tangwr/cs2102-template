@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block content %}
+
+ <form action="/editProject" method="post">
+ 	<input type="hidden" name="projectID" value={{data[0]}} /> 
+    <div class="form-group">
+        <label for="title">Title</label>
+        <input class="form-control" type="text" placeholder="Title" id="title" name="title" value={{data[1]}} required>
+        
+    </div>
+    <div class="form-group">
+        <label for="description">Description</label>
+        <textarea class="form-control" id="description" name="description" rows="3" placeholder="Description" value="pig" required>{{data[2]}}</textarea>       
+    </div>
+    <div class="form-group">
+        <label for="title">Start Date</label>
+        <input class="form-control" type="date" placeholder={{currDate}} min={{currDate}} id="startDate" name="startDate" value={{data[3]}} required>   
+    </div>
+    <div class="form-group">
+        <label for="description">Duration</label>
+        <div class="input-group">
+            <input class="form-control" type="number" min="0" max="365" placeholder="mi: 0 day, max: 365days" id="duration" name="duration" value={{data[4]}} required>
+            <div class="input-group-addon">day(s)</div>  
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="title">Target Fund</label>
+        <div class="input-group">
+            <div class="input-group-addon">$</div>
+            <input class="form-control" type="number" min="0" class="form-control" id="amount" name="amount" placeholder="100" value={{data[5]}} required>
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="offset-sm-2 col-sm-10">
+            <button type="submit" class="btn btn-success">Edit Project</button>
+            <a href="/delete?project={{data[0]}}" class="btn btn-danger" onclick="return confirm('Delete Project?')">Delete</a>
+
+        </div>
+    </div>
+
+</form>
+
+{% endblock %}

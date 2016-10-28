@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+<head>
+    <title>Crowdfunding</title>
+ 
+   
+    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+ 
+    <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+   
+    <!-- <link href="../static/sticky-footer.css" rel="stylesheet"> -->
+ 
+</head>
+ 
+<body>
+
+    <div class="container">
+        <div class="header">
+        <nav>
+            <ul class="nav nav-pills pull-right">
+               
+                {% for nav, title in navTitleBar %}
+                   
+                    {% if page == nav %}
+                        <li role="presentation" class="active"><a href={{nav}}>{{title}}</a>
+                    {% else %}
+                        <li role="presentation"><a href={{nav}}>{{title}}</a>
+                    {% endif %}
+                   
+                 {% endfor %}
+            </ul>
+        </nav>
+        <h3 class="text-muted">Crowdfunding</h3>
+    </div>
+         <!--
+        <div class="header">
+            <nav>
+                <ul class="nav nav-pills pull-right">
+
+                    
+                    <li role="presentation"><a href="/" class="active">Home</a>
+                    </li>
+                    <li role="presentation"><a href="login">Login</a>
+                    </li>
+                    <li role="presentation"><a href="signup">Sign Up</a>
+                    </li>
+                    <li role="presentation"><a href="project">Project</a>
+                    </li>
+                    <li role="presentation"><a href="admin">Admin</a>
+                    </li>
+                    <li role="presentation"><a href="user">User</a>
+                    </li>
+                
+                </ul>
+            </nav>
+            <h3 class="text-muted">Crowdfunding</h3>
+        </div>
+    -->
+    
+        {% block content %}{% endblock %}
+        
+ 
+       
+        
+   
+ <!--
+    </div>
+
+     <footer class="footer">
+      <div class="container">
+        <p class="text-muted">CS2102</p>
+      </div>
+    </footer>
+-->
+</body>
+ 
+</html>
